@@ -1,0 +1,32 @@
+// src/components/services/ServicesHero/ServicesHero.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.hero {
+  padding: 12rem 0 6rem;
+  text-align: center;
+
+  @include tablet {
+    padding: 8rem 0 4rem;
+  }
+}
+
+.tag {
+  display: block;
+  font-family: _.$font-display;
+  color: _.$accent;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: _.$gray-800;
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,91 @@
+// src/components/common/Input/Input.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.inputGroup {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  background: transparent;
+  color: _.$secondary;
+  font-size: 1rem;
+  outline: none;
+
+  &:focus ~ .label,
+  &:not(:placeholder-shown) ~ .label {
+    top: -10px;
+    font-size: 0.75rem;
+    color: _.$accent;
+  }
+
+  &:focus ~ .borderLine::after {
+    width: 100%;
+  }
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.label {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  color: _.$gray-500;
+  transition: _.$transition-smooth;
+  pointer-events: none;
+  font-weight: 500;
+}
+
+.required {
+  color: _.$accent;
+}
+
+.borderLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: _.$gray-200;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: _.$accent;
+    transition: _.$transition-smooth;
+  }
+}
+
+.hasError {
+  .borderLine::after {
+    background-color: #ff3333;
+    width: 100%;
+  }
+
+  .label {
+    color: #ff3333;
+  }
+}
+
+.errorText {
+  display: block;
+  font-size: 0.75rem;
+  color: #ff3333;
+  margin-top: 0.5rem;
+}

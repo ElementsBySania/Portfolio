@@ -1,0 +1,38 @@
+// src/components/contact/ContactForm/ContactForm.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.formWrapper {
+  background-color: _.$gray-100;
+  padding: 4rem;
+  border-radius: 32px;
+
+  @include mobile {
+    padding: 2rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.submitBtn {
+  align-self: flex-start;
+  margin-top: 2rem;
+
+  @include mobile {
+    width: 100%;
+  }
+}

@@ -1,0 +1,44 @@
+// src/components/portfolio/PortfolioFilter/PortfolioFilter.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.filterContainer {
+  margin-bottom: 4rem;
+}
+
+.filters {
+  @include flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  font-family: _.$font-display;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: _.$gray-500;
+  padding: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+  transition: _.$transition-smooth;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: _.$accent;
+    transition: _.$transition-smooth;
+  }
+
+  &:hover, &.active {
+    color: _.$white;
+  }
+
+  &.active::after {
+    width: 100%;
+  }
+}

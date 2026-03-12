@@ -1,0 +1,22 @@
+// src/components/portfolio/PortfolioHero/PortfolioHero.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.hero {
+  padding: 12rem 0 4rem;
+  text-align: center;
+
+  @include tablet {
+    padding: 8rem 0 2rem;
+  }
+}
+
+.tag {
+  display: block;
+  font-family: _.$font-display;
+  color: _.$accent;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}

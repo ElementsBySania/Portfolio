@@ -1,0 +1,25 @@
+// src/components/portfolio/PortfolioGrid/PortfolioGrid.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.gridSection {
+  padding-bottom: 8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @include laptop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  width: 100%;
+}

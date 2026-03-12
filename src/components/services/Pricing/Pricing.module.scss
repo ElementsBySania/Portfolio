@@ -1,0 +1,113 @@
+// src/components/services/Pricing/Pricing.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.title {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @include laptop {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+}
+
+.card {
+  background-color: _.$gray-100;
+  padding: 4rem 3rem;
+  border-radius: 24px;
+  @include flex(flex-start, center, column);
+  text-align: center;
+  position: relative;
+  transition: _.$transition-smooth;
+
+  @include mobile {
+    padding: 3rem 1rem;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    background-color: _.$gray-200;
+  }
+}
+
+.featured {
+  background-color: _.$white;
+  color: _.$primary;
+
+  &:hover {
+    background-color: _.$white;
+    color: _.$primary;
+  }
+
+  .name, .price, .features li {
+    color: _.$primary;
+  }
+
+  .desc {
+    color: _.$gray-500;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: _.$accent;
+  color: _.$white;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.name {
+  font-family: _.$font-display;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: _.$accent;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+}
+
+.price {
+  font-family: _.$font-display;
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 800;
+  color: _.$white;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  font-size: 1rem;
+  color: _.$gray-500;
+  margin-bottom: 3rem;
+}
+
+.features {
+  width: 100%;
+  margin-bottom: 4rem;
+  @include flex(center, center, column);
+  gap: 1.5rem;
+
+  li {
+    color: _.$gray-800;
+    font-size: 1rem;
+  }
+}
+
+.cta {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+// src/components/contact/ContactPage/ContactPage.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: flex-start;
+
+  @include laptop {
+    grid-template-columns: 1fr;
+  }
+}

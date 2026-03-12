@@ -1,0 +1,76 @@
+// src/components/home/Testimonials/Testimonials.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.title {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: _.$transition-slow;
+
+  &.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.testimonial {
+  background-color: _.$gray-100;
+  padding: 3rem;
+  border-radius: 20px;
+  position: relative;
+  transition: _.$transition-smooth;
+
+  &:hover {
+    background-color: _.$gray-200;
+    transform: scale(1.02);
+  }
+}
+
+.quoteIcon {
+  font-family: _.$font-display;
+  font-size: 5rem;
+  color: _.$accent;
+  line-height: 1;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  opacity: 0.2;
+}
+
+.text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: _.$white;
+  margin-bottom: 2rem;
+  position: relative;
+  font-style: italic;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-family: _.$font-display;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: _.$white;
+}
+
+.position {
+  font-size: 0.875rem;
+  color: _.$gray-500;
+}

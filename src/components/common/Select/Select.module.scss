@@ -1,0 +1,106 @@
+// src/components/common/Select/Select.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.selectGroup {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  color: _.$accent;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.customSelect {
+  position: relative;
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid _.$gray-200;
+  cursor: pointer;
+  transition: _.$transition-smooth;
+
+  &.isOpen {
+    border-bottom-color: _.$accent;
+    .arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}
+
+.selectedPlaceholder {
+  color: _.$secondary;
+  font-size: 1rem;
+}
+
+.arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 6px;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  background-color: _.$secondary;
+  transition: _.$transition-smooth;
+}
+
+.optionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: _.$gray-100;
+  z-index: 10;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-top: 1px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.optionItem {
+  padding: 1rem;
+  transition: _.$transition-smooth;
+  animation: slideDown 0.3s ease forwards;
+  opacity: 0;
+
+  &:hover {
+    background-color: _.$gray-200;
+    color: _.$accent;
+  }
+
+  &.active {
+    color: _.$accent;
+    font-weight: 700;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.required {
+  color: _.$accent;
+}
+
+.hasError {
+  .customSelect {
+    border-bottom-color: #ff3333;
+  }
+  .label {
+    color: #ff3333;
+  }
+}
+
+.errorText {
+  display: block;
+  font-size: 0.75rem;
+  color: #ff3333;
+  margin-top: 0.5rem;
+}

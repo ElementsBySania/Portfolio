@@ -1,0 +1,23 @@
+// src/components/contact/ContactHero/ContactHero.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.hero {
+  padding: 12rem 0 4rem;
+  text-align: center;
+
+  @include tablet {
+    padding: 6rem 1rem 2rem;
+    overflow-x: hidden;
+  }
+}
+
+.tag {
+  display: block;
+  font-family: _.$font-display;
+  color: _.$accent;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}

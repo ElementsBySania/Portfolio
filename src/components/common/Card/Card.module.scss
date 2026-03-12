@@ -1,0 +1,117 @@
+// src/components/common/Card/Card.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.card {
+  position: relative;
+  background-color: _.$gray-100;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: _.$transition-slow;
+  opacity: 0;
+  transform: translateY(30px);
+
+  &.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+
+    .image {
+      transform: scale(1.05);
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: _.$transition-slow;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, _.$gray-200, _.$gray-100);
+  @include flex;
+  font-family: _.$font-display;
+  text-transform: uppercase;
+  color: _.$gray-500;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(_.$primary, 0.6);
+  backdrop-filter: blur(4px);
+  @include flex;
+  opacity: 0;
+  transition: _.$transition-smooth;
+}
+
+.viewLabel {
+  background-color: _.$white;
+  color: _.$primary;
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  font-family: _.$font-display;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: _.$accent;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: _.$white;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: _.$gray-800;
+  line-height: 1.5;
+}
+
+.linkWrapper {
+  display: block;
+}
+
+// Variants
+.featured {
+  .imageWrapper {
+    aspect-ratio: 16/9;
+  }
+}
+
+.minimal {
+  background-color: transparent;
+  .content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

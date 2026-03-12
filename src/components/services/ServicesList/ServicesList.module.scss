@@ -1,0 +1,80 @@
+// src/components/services/ServicesList/ServicesList.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: _.$gray-100;
+  padding: 4rem;
+  border-radius: 24px;
+  position: relative;
+  transition: _.$transition-smooth;
+
+  &:hover {
+    background-color: _.$gray-200;
+    transform: translateY(-5px);
+
+    .number {
+      color: _.$accent;
+    }
+  }
+
+  @include mobile {
+    padding: 2rem;
+  }
+}
+
+.number {
+  font-family: _.$font-display;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: _.$gray-500;
+  margin-bottom: 2rem;
+  transition: _.$transition-smooth;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: _.$white;
+}
+
+.description {
+  color: _.$gray-800;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-size: 1.125rem;
+}
+
+.deliverables {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  
+  li {
+    font-size: 0.875rem;
+    color: _.$gray-500;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    @include flex(flex-start, center);
+    gap: 0.75rem;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: _.$accent;
+      border-radius: 50%;
+    }
+  }
+}

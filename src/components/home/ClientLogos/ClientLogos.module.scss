@@ -1,0 +1,47 @@
+// src/components/home/ClientLogos/ClientLogos.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.clients {
+  padding: 4rem 0;
+  border-top: 1px solid rgba(_.$white, 0.05);
+  border-bottom: 1px solid rgba(_.$white, 0.05);
+  background-color: _.$primary;
+  overflow: hidden;
+}
+
+.marquee {
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.client {
+  padding: 0 4rem;
+  @include flex;
+}
+
+.clientName {
+  font-family: _.$font-display;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(_.$white, 0.2);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: _.$transition-smooth;
+
+  &:hover {
+    color: _.$accent;
+    -webkit-text-stroke-color: _.$accent;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

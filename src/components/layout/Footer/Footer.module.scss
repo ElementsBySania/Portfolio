@@ -1,0 +1,91 @@
+// src/components/layout/Footer/Footer.module.scss
+@use '@/styles/variables' as _;
+@use '@/styles/mixins' as *;
+
+.footer {
+  background-color: _.$gray-100;
+  padding: 6rem 0 3rem;
+  margin-top: auto;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(_.$white, 0.1);
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.logo {
+  font-family: _.$font-display;
+  font-size: 2rem;
+  font-weight: 800;
+  color: _.$white;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.tagline {
+  color: _.$gray-500;
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.navTitle {
+  font-family: _.$font-display;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: _.$accent;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+}
+
+.links {
+  li {
+    margin-bottom: 1rem;
+    
+    a {
+      color: _.$gray-800;
+      font-size: 1rem;
+      
+      &:hover {
+        color: _.$white;
+      }
+    }
+  }
+}
+
+.bottom {
+  padding-top: 3rem;
+  @include flex(space-between, center);
+  
+  @include mobile {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
+
+.copy {
+  font-size: 0.875rem;
+  color: _.$gray-500;
+}
+
+.legal {
+  @include flex;
+  gap: 2rem;
+  
+  a {
+    font-size: 0.875rem;
+    color: _.$gray-500;
+    
+    &:hover {
+      color: _.$white;
+    }
+  }
+}

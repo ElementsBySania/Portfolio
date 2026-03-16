@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sania — Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;--ink:#1A1A1A;--charcoal:#FFFFFF;
+  --mocha:#4A3F35;--terra:#D97706;--gold:#B45309;
+  --muted:#71717A;--border:rgba(0,0,0,.08);
+  --white:#FFFFFF;--shadow:0 8px 32px rgba(0,0,0,.05);
+  --accent-glow:rgba(217,119,6,0.05);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.2}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 60px;background:rgba(250,247,242,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:padding .3s}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--terra)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:12px;font-weight:600;color:var(--mocha);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--terra)}
+.nav-cta{background:var(--terra);color:white;padding:10px 22px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:.02em;transition:opacity .2s,transform .2s}
+.nav-cta:hover{opacity:0.9;transform:translateY(-1px)}
+
+/* ═══ PAGE STYLES ═══ */
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:110px 60px 80px;gap:80px;overflow:hidden}
+.hero-decor{position:absolute;top:60px;right:0;width:52vw;height:100%;background:linear-gradient(135deg,#FAF7F2,#F3EFE8 50%,#EBE5DA);border-radius:60px 0 0 60px;z-index:-1}
+.hero-decor::after{content:'';position:absolute;top:-20px;left:-20px;right:20px;bottom:-20px;border:1.5px solid rgba(217,119,6,.1);border-radius:60px 0 0 60px}
+.avail{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600;color:#166534;letter-spacing:.04em;margin-bottom:28px}
+.avail-dot{width:7px;height:7px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,4.5vw,60px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;color:var(--ink)}
+.hero h1 em{color:var(--terra);font-style:italic}
+.hero-sub{font-size:16px;line-height:1.7;color:var(--mocha);margin-bottom:32px;max-width:480px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.tag{background:rgba(0,0,0,.04);border:1px solid var(--border);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--mocha)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-p{background:var(--terra);color:white;padding:13px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s;cursor:pointer;border:none;display:inline-block}
+.btn-p:hover{opacity:0.9;transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--ink);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;border:1.5px solid var(--border);transition:border-color .2s,color .2s;cursor:pointer;display:inline-block}
+.btn-s:hover{border-color:var(--terra);color:var(--terra)}
+
+/* Hero right */
+.hero-right{display:flex;flex-direction:column;gap:16px}
+.profile-card{background:white;border-radius:24px;padding:28px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
+.profile-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.pt{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.avatar{width:52px;height:52px;background:linear-gradient(135deg,var(--terra),#F59E0B);border-radius:16px;display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;flex-shrink:0}
+.pi h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--ink)}
+.pi p{font-size:12px;color:var(--muted);margin-top:2px}
+.stars{color:var(--gold);font-size:13px;margin-top:4px}
+.ps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden}
+.ps{background:var(--white);padding:14px 8px;text-align:center}
+.ps-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.ps-n span{font-size:14px}
+.ps-l{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.04em;text-transform:uppercase}
+
+/* Mini services in hero */
+.ms-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ms{background:white;border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;align-items:flex-start;gap:12px;transition:transform .2s,border-color .2s}
+.ms:hover{transform:translateY(-2px);border-color:rgba(217,119,6,0.3)}
+.ms-ic{width:36px;height:36px;background:rgba(217,119,6,0.06);border-radius:10px;display:grid;place-items:center;flex-shrink:0;color:var(--terra)}
+.ms-ic svg{display:block}
+.ms-nm{font-size:13px;font-weight:700;color:var(--ink)}
+.ms-ds{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0 60px}
+
+/* SECTION wrapper */
+.section{max-width:1200px;margin:0 auto;padding:80px 60px}
+.sl-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);font-weight:700;line-height:1.15;margin-bottom:16px;color:var(--ink)}
+.sec-h em{font-style:italic;color:var(--terra)}
+.sec-p{font-size:15px;color:var(--mocha);line-height:1.7;max-width:540px;margin-bottom:48px}
+
+/* SERVICES - minimal 3-col */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:white;border:1px solid var(--border);border-radius:20px;padding:28px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--terra),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover{transform:translateY(-6px);border-color:rgba(217,119,6,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.06)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-ic{width:48px;height:48px;background:rgba(217,119,6,0.06);border-radius:14px;display:grid;place-items:center;color:var(--terra);margin-bottom:18px;transition:background .2s}
+.svc:hover .svc-ic{background:rgba(217,119,6,0.1)}
+.svc-ic svg{display:block;transition:transform .3s}
+.svc:hover .svc-ic svg{transform:scale(1.12)}
+.svc-nm{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.svc-ds{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* PROCESS - minimal 4-step */
+.proc-bg{background:#FDFCF9;color:var(--ink)}
+.proc-bg .sl-label{color:var(--gold)}
+.proc-bg .sec-h{color:var(--ink)}
+.proc-bg .sec-p{color:var(--mocha)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps::before{content:'';position:absolute;top:28px;left:14%;right:14%;height:1px;background:var(--border);z-index:0}
+.step{text-align:center;padding:0 20px;position:relative;z-index:1}
+.step-num{width:56px;height:56px;border-radius:50%;background:rgba(180,83,9,0.06);border:1.5px solid rgba(180,83,9,0.2);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);margin:0 auto 20px}
+.step-t{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.step-d{font-size:13px;color:var(--mocha);line-height:1.6}
+
+/* CONTACT */
+.cta-section{background:#FDFCF9;color:var(--ink);text-align:center;padding:80px 60px;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(217,119,6,0.06),transparent 70%);pointer-events:none}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.2;margin-bottom:16px}
+.cta-section p{font-size:16px;color:var(--mocha);max-width:480px;margin:0 auto 40px;line-height:1.7}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-btn{background:var(--terra);color:white;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(217,119,6,.2)}
+.cta-btn-out{background:transparent;color:var(--ink);padding:14px 32px;border-radius:100px;font-weight:600;font-size:14px;text-decoration:none;border:1.5px solid var(--border);transition:border-color .2s}
+.cta-btn-out:hover{border-color:var(--terra)}
+
+/* FOOTER */
+footer{background:var(--cream);color:var(--mocha);text-align:center;padding:24px 60px;font-size:12px;border-top:1px solid var(--border)}
+footer strong{color:var(--terra)}
+
+/* PORTFOLIO STYLES */
+.brand-sec{margin-bottom:80px;padding:40px;background:white;border-radius:32px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.brand-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:32px;flex-wrap:wrap}
+.brand-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.brand-nm{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.brand-ds{font-size:14px;color:var(--mocha);margin-top:4px}
+.brand-badge{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;border:1px solid;align-self:flex-start;white-space:nowrap}
+
+/* Project Grids */
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.rc{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:1/1;background:var(--cream);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.rc:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,0.1);z-index:2}
+.rc img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .3s}
+.rc:hover img{filter:brightness(.85)}
+.rc-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent 60%);opacity:0;transition:opacity .3s}
+.rc:hover .rc-ov{opacity:1}
+.rc-t{font-size:14px;font-weight:700;color:white;line-height:1.4}
+
+/* Carousels */
+.car-wrap{margin-top:32px;max-width:100%}
+.car-lbl{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.car-lbl::before{content:'';width:30px;height:1px;background:var(--border)}
+.car{background:white;border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.tr{position:relative;aspect-ratio:1/1;overflow:hidden}
+.sl{position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.sl.act{opacity:1;z-index:1}
+.sl img{width:100%;height:100%;object-fit:cover;display:block}
+.sl-lb{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:32px 20px 16px;font-size:14px;font-weight:700;color:white;line-height:1.4}
+.cu{display:flex;align-items:center;gap:14px;padding:16px 24px;background:rgba(0,0,0,0.02)}
+.cb{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:14px;transition:all .2s;flex-shrink:0}
+.cb:hover{background:var(--terra);border-color:var(--terra);color:white}
+.dts{display:flex;gap:6px;flex:1;justify-content:center}
+.dt{width:6px;height:6px;border-radius:3px;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
+.dt.on{width:20px;background:var(--terra)}
+.cu span{font-size:12px;color:var(--muted);font-weight:700;flex-shrink:0}
+
+/* Carousel Grid Layout */
+.car-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.car-grid .car-wrap{margin-top:0}
+.car-grid .tr{aspect-ratio:1/1}
+@media(max-width:1024px){.car-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.car-grid{grid-template-columns:1fr}}
+
+/* IMAGE PREVIEW MODAL */
+.modal{display:none;position:fixed;z-index:2000;padding-top:60px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.9);backdrop-filter:blur(8px)}
+.modal-content{margin:auto;display:block;width:auto;max-width:90%;max-height:85vh;border-radius:12px;box-shadow:0 0 40px rgba(0,0,0,0.5);animation:zoom 0.3s ease-out}
+@keyframes zoom{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
+.close{position:absolute;top:20px;right:35px;color:#f1f1f1;font-size:40px;font-weight:bold;transition:0.3s;cursor:pointer;z-index:2001}
+.close:hover,.close:focus{color:#bbb;text-decoration:none;cursor:pointer}
+@media only screen and (max-width:700px){.modal-content{width:95%}}
+
+/* SCROLL REVEAL */
+.sr{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.sr.vis{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);gap:32px}
+  .steps::before{display:none}
+}
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;gap:40px;padding:100px 24px 60px}
+  .hero-decor{display:none}
+  .hero-right{display:none}
+  .section{padding:60px 24px}
+  .svc-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .cta-section{padding-left:24px;padding-right:24px}
+  footer{padding:20px 24px}
+  .divider{margin:0 24px}
+  .ms-grid{grid-template-columns:1fr 1fr}
+  .brand-sec{padding:24px}
+}
+
+/* MARQUEE */
+.marquee-wrap{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 0;overflow:hidden;background:rgba(0,0,0,0.02);margin-top:20px;margin-bottom:60px;display:flex}
+.marquee-wrap:hover .marquee{animation-play-state:paused}
+.marquee{display:flex;width:max-content;animation:scroll 40s linear infinite;align-items:center}
+.tool-link{display:flex;align-items:center;justify-content:center;margin:0 30px;transition:all 0.3s ease;text-decoration:none;font-size:14px;font-weight:700;color:var(--mocha);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap}
+.tool-link:hover{color:var(--terra);transform:scale(1.05)}
+.tool-link::after{content:'✦';margin-left:60px;color:var(--border);font-size:10px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:768px){.tool-link{margin:0 15px;font-size:12px}.tool-link::after{margin-left:30px}}
+
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.rev-card{background:white;border:1px solid var(--border);border-radius:24px;padding:32px;transition:transform 0.3s,border-color 0.3s;box-shadow:var(--shadow)}
+.rev-card:hover{transform:translateY(-4px);border-color:rgba(217,119,6,0.3)}
+.rev-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.rev-av{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:20px;color:white;flex-shrink:0}
+.rev-name{font-weight:800;font-size:16px;color:var(--ink)}
+.rev-role{font-size:13px;color:var(--muted)}
+.rev-tag{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 14px;border-radius:100px;border:1px solid;align-self:flex-start}
+.rev-text{font-size:14px;color:var(--mocha);line-height:1.7;margin-bottom:16px;font-style:italic}
+.rev-stars{font-size:16px;color:var(--gold)}
+
+</style>
+</head>
+<body>
+
+<!-- NAV (shared) -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#">Sania<span>.</span></a>
+  <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  <a href="https://www.upwork.com/freelancers/~0123456789abcdef" target="_blank" class="nav-cta">Hire Me on Upwork</a>
+</nav>
+
+<!-- ═══════════════════════ CONTENT ═══════════════════════ -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-left sr">
+    <div class="avail"><span class="avail-dot"></span>Available for new projects</div>
+    <h1>Helping Brands <em>Stand Out</em><br/>with Clean Design</h1>
+    <p class="hero-sub">I create strategic branding, social media graphics, and marketing visuals that make businesses look professional and memorable.</p>
+    <div class="hero-tags">
+      <span class="tag">Brand Identity</span>
+      <span class="tag">Social Media Design</span>
+      <span class="tag">Infographics</span>
+      <span class="tag">Marketing Graphics</span>
+      <span class="tag">Carousel Design</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-p">See My Work</a>
+      <a href="https://www.upwork.com/freelancers/~0123456789abcdef" target="_blank" class="btn-s">Hire Me on Upwork</a>
+    </div>
+  </div>
+  <div class="hero-right sr" style="transition-delay:.2s">
+    <div class="profile-card">
+      <div class="pt">
+        <div class="avatar">S</div>
+        <div class="pi">
+          <h3>Sania</h3>
+          <p>Graphic Designer · Pakistan</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps"><div class="ps-n">60<span>+</span></div><div class="ps-l">Posts</div></div>
+        <div class="ps"><div class="ps-n">4<span>+</span></div><div class="ps-l">Brands</div></div>
+        <div class="ps"><div class="ps-n">100<span>%</span></div><div class="ps-l">Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="ms-grid">
+      <div class="ms">
+        <div class="ms-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+        <div><div class="ms-nm">Brand Identity</div><div class="ms-ds">Logos & visual systems</div></div>
+      </div>
+      <div class="ms">
+        <div class="ms-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div><div class="ms-nm">Social Media</div><div class="ms-ds">Posts & carousels</div></div>
+      </div>
+      <div class="ms">
+        <div class="ms-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <div><div class="ms-nm">Infographics</div><div class="ms-ds">Data visuals</div></div>
+      </div>
+      <div class="ms">
+        <div class="ms-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <div><div class="ms-nm">Marketing</div><div class="ms-ds">Ads & campaigns</div></div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <!-- Tool Names -->
+    <a href="https://canva.com" target="_blank" class="tool-link">Canva</a>
+    <a href="https://figma.com" target="_blank" class="tool-link">Figma</a>
+    <a href="https://adobe.com/photoshop" target="_blank" class="tool-link">Photoshop</a>
+    <a href="https://adobe.com/illustrator" target="_blank" class="tool-link">Illustrator</a>
+    <a href="https://adobe.com/indesign" target="_blank" class="tool-link">InDesign</a>
+    <a href="https://adobe.com/express" target="_blank" class="tool-link">Adobe Express</a>
+    <a href="https://beautiful.ai" target="_blank" class="tool-link">Beautiful.ai</a>
+    <a href="https://tome.app" target="_blank" class="tool-link">Tome</a>
+    <a href="https://slidesai.io" target="_blank" class="tool-link">SlidesAI</a>
+    <a href="https://microsoft.com/powerpoint" target="_blank" class="tool-link">PowerPoint</a>
+    <a href="https://slidebean.com" target="_blank" class="tool-link">Slidebean</a>
+    <a href="https://www.visme.co" target="_blank" class="tool-link">Visme</a>
+    <a href="https://decktopus.com" target="_blank" class="tool-link">Decktopus</a>
+    <a href="https://runwayml.com" target="_blank" class="tool-link">Runway</a>
+    <a href="https://chat.openai.com" target="_blank" class="tool-link">ChatGPT</a>
+    <a href="https://gemini.google.com" target="_blank" class="tool-link">Gemini</a>
+    <a href="https://ai.meta.com" target="_blank" class="tool-link">Meta AI</a>
+    <a href="https://midjourney.com" target="_blank" class="tool-link">MidJourney</a>
+    <a href="https://openai.com/dall-e" target="_blank" class="tool-link">DALL·E</a>
+    <a href="https://lumen5.com" target="_blank" class="tool-link">Lumen5</a>
+    <a href="https://photopea.com" target="_blank" class="tool-link">Photopea</a>
+    <a href="https://picsart.com" target="_blank" class="tool-link">PicsArt</a>
+    <a href="https://adobe.com/creativecloud" target="_blank" class="tool-link">Adobe CC</a>
+
+    <!-- Duplicate for seamless scroll -->
+    <a href="https://canva.com" target="_blank" class="tool-link">Canva</a>
+    <a href="https://figma.com" target="_blank" class="tool-link">Figma</a>
+    <a href="https://adobe.com/photoshop" target="_blank" class="tool-link">Photoshop</a>
+    <a href="https://adobe.com/illustrator" target="_blank" class="tool-link">Illustrator</a>
+    <a href="https://adobe.com/indesign" target="_blank" class="tool-link">InDesign</a>
+    <a href="https://adobe.com/express" target="_blank" class="tool-link">Adobe Express</a>
+    <a href="https://beautiful.ai" target="_blank" class="tool-link">Beautiful.ai</a>
+    <a href="https://tome.app" target="_blank" class="tool-link">Tome</a>
+    <a href="https://slidesai.io" target="_blank" class="tool-link">SlidesAI</a>
+    <a href="https://microsoft.com/powerpoint" target="_blank" class="tool-link">PowerPoint</a>
+    <a href="https://slidebean.com" target="_blank" class="tool-link">Slidebean</a>
+    <a href="https://www.visme.co" target="_blank" class="tool-link">Visme</a>
+    <a href="https://decktopus.com" target="_blank" class="tool-link">Decktopus</a>
+    <a href="https://runwayml.com" target="_blank" class="tool-link">Runway</a>
+    <a href="https://chat.openai.com" target="_blank" class="tool-link">ChatGPT</a>
+    <a href="https://gemini.google.com" target="_blank" class="tool-link">Gemini</a>
+    <a href="https://ai.meta.com" target="_blank" class="tool-link">Meta AI</a>
+    <a href="https://midjourney.com" target="_blank" class="tool-link">MidJourney</a>
+    <a href="https://openai.com/dall-e" target="_blank" class="tool-link">DALL·E</a>
+    <a href="https://lumen5.com" target="_blank" class="tool-link">Lumen5</a>
+    <a href="https://photopea.com" target="_blank" class="tool-link">Photopea</a>
+    <a href="https://picsart.com" target="_blank" class="tool-link">PicsArt</a>
+    <a href="https://adobe.com/creativecloud" target="_blank" class="tool-link">Adobe CC</a>
+  </div>
+</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section">
+    <div class="sl-label sr">What I Offer</div>
+    <h2 class="sec-h sr">Services Built for<br/><em>Real Results</em></h2>
+    <p class="sec-p sr">Every project is crafted with strategy, creativity, and clear communication.</p>
+    <div class="svc-grid">
+      <div class="svc sr">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85"/></svg></div>
+        <div class="svc-nm">Brand Identity</div>
+        <div class="svc-ds">Logo, color palette, typography, and brand guidelines that make your business instantly recognizable.</div>
+      </div>
+      <div class="svc sr" style="transition-delay:.08s">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4M7 7h.01M7 11h5"/></svg></div>
+        <div class="svc-nm">Social Media Design</div>
+        <div class="svc-ds">Scroll-stopping posts, carousels, stories, and ads that grow your audience and boost engagement.</div>
+      </div>
+      <div class="svc sr" style="transition-delay:.16s">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <div class="svc-nm">Infographics</div>
+        <div class="svc-ds">Data-driven visuals that simplify complex information and make your content shareable.</div>
+      </div>
+      <div class="svc sr" style="transition-delay:.24s">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8m8-4h-8"/></svg></div>
+        <div class="svc-nm">Marketing Visuals</div>
+        <div class="svc-ds">Banners, promotional posts, and campaign graphics that convert attention into action.</div>
+      </div>
+      <div class="svc sr" style="transition-delay:.32s">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h1v6H9zm4-3h1v9h-1zm4 3h1v6h-1z"/></svg></div>
+        <div class="svc-nm">Content Series</div>
+        <div class="svc-ds">Cohesive multi-post educational series and carousels that position your brand as an authority.</div>
+      </div>
+      <div class="svc sr" style="transition-delay:.40s">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <div class="svc-nm">Custom Graphics</div>
+        <div class="svc-ds">Event posters, announcements, quotes, and any custom visual needs your brand requires.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="sl-label sr">Selected Projects</div>
+  <h2 class="sec-h sr">Creative Work —<br/><em>Brand Showcase</em></h2>
+  <p class="sec-p sr">A detailed look at campaigns, identity systems, and social media content created for global clients.</p>
+
+  <!-- AWFERA PROJECT -->
+  <div class="brand-sec sr">
+    <div class="brand-hd">
+      <div class="brand-ico" style="background:rgba(139,92,246,0.1)">✦</div>
+      <div>
+        <div class="brand-nm">Awfera Innovations</div>
+        <div class="brand-ds">Complete design system for an AI education platform.</div>
+      </div>
+      <span class="brand-badge" style="color:var(--terra);border-color:rgba(139,92,246,.2)">AI · EdTech</span>
+    </div>
+
+    <!-- Awfera Posts -->
+    <div class="car-lbl">Social Media Posts</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/Awfera/post/474256780_122111108282698026_5965095898210594572_n.jpg" alt="Post 1"><div class="rc-ov"><div class="rc-t">Brand Launch</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/post/475463779_122116212932698026_7690171402586939941_n.jpg" alt="Post 2"><div class="rc-ov"><div class="rc-t">AI Insights</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/post/476837287_122114925632698026_2488692543293433658_n.jpg" alt="Post 3"><div class="rc-ov"><div class="rc-t">Community Growth</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/post/479698680_122115380714698026_2025439436706669357_n.jpg" alt="Post 4"><div class="rc-ov"><div class="rc-t">Expert Tips</div></div></div>
+    </div>
+
+    <!-- Awfera Carousel -->
+    <div class="car-wrap">
+      <div class="car-lbl">Educational Carousel</div>
+      <div class="car" id="awfera-car" data-n="6">
+        <div class="tr">
+          <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/499606935_122133670172698026_4012722355798573035_n.jpg" alt="Slide 1"><div class="sl-lb">What Will I Learn?</div></div>
+          <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/500932137_122133669740698026_8778876717884199096_n.jpg" alt="Slide 2"><div class="sl-lb">Why Freelancing?</div></div>
+          <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/509605171_122133669638698026_8699673370769159815_n.jpg" alt="Slide 3"><div class="sl-lb">Boost Your Career</div></div>
+          <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/510287046_122133670178698026_6613566049551623370_n.jpg" alt="Slide 4"><div class="sl-lb">Success Tips</div></div>
+          <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/510325445_122133670166698026_200067157962628989_n.jpg" alt="Slide 5"><div class="sl-lb">Stepping Stone</div></div>
+          <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 2/510807995_122133670184698026_9209786037263119962_n.jpg" alt="Slide 6"><div class="sl-lb">Register Today</div></div>
+        </div>
+        <div class="cu">
+          <button class="cb" onclick="pc('awfera-car')">←</button>
+          <div class="dts">
+            <button class="dt on" onclick="gs('awfera-car',0)"></button>
+            <button class="dt" onclick="gs('awfera-car',1)"></button>
+            <button class="dt" onclick="gs('awfera-car',2)"></button>
+            <button class="dt" onclick="gs('awfera-car',3)"></button>
+            <button class="dt" onclick="gs('awfera-car',4)"></button>
+            <button class="dt" onclick="gs('awfera-car',5)"></button>
+          </div>
+          <button class="cb" onclick="nc('awfera-car')">→</button>
+          <span id="awfera-car-ct">1/6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Awfera Reel Covers & Additional Carousels -->
+    <div class="car-lbl" style="margin-top:40px">Campaigns & Reel Covers</div>
+    <div class="car-grid">
+      <!-- Reel Cover -->
+      <div class="rc"><img src="assets/Portfolio/Awfera/Reel cover/Image-763.jpg" alt="Reel Cover"><div class="rc-ov"><div class="rc-t">Video Storytelling</div></div></div>
+
+      <!-- Carousel 3 -->
+      <div class="car-wrap">
+        <div class="car" id="awfera-car-3" data-n="6">
+          <div class="tr">
+            <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/476389381_122115380198698026_2364005515560836516_n.jpg" alt="Slide 1"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/476639681_122115380222698026_2129279906760145165_n.jpg" alt="Slide 2"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/477189039_122115380114698026_2617983035077468202_n.jpg" alt="Slide 3"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/477457713_122115380120698026_1929529670766085321_n.jpg" alt="Slide 4"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/479499780_122115380126698026_2700407610060510413_n.jpg" alt="Slide 5"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 3/479693271_122115380096698026_5439253505825557852_n.jpg" alt="Slide 6"></div>
+          </div>
+          <div class="cu">
+            <button class="cb" onclick="pc('awfera-car-3')">←</button>
+            <div class="dts">
+              <button class="dt on" onclick="gs('awfera-car-3',0)"></button>
+              <button class="dt" onclick="gs('awfera-car-3',1)"></button>
+              <button class="dt" onclick="gs('awfera-car-3',2)"></button>
+              <button class="dt" onclick="gs('awfera-car-3',3)"></button>
+              <button class="dt" onclick="gs('awfera-car-3',4)"></button>
+              <button class="dt" onclick="gs('awfera-car-3',5)"></button>
+            </div>
+            <button class="cb" onclick="nc('awfera-car-3')">→</button>
+            <span id="awfera-car-3-ct">1/6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel 4 -->
+      <div class="car-wrap">
+        <div class="car" id="awfera-car-4" data-n="7">
+          <div class="tr">
+            <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/473224913_122111265188698026_4486906802215630423_n.jpg" alt="Slide 1"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/473718459_122111265200698026_2523976223621570476_n.jpg" alt="Slide 2"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/474066266_122111265176698026_6751773325189517100_n.jpg" alt="Slide 3"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/474068458_122111265182698026_945240913486292272_n.jpg" alt="Slide 4"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/474094310_122111265344698026_7276453891956060141_n.jpg" alt="Slide 5"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/474101434_122111265224698026_2176791915464144890_n.jpg" alt="Slide 6"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 4/474101473_122111265266698026_3594730811359971922_n.jpg" alt="Slide 7"></div>
+          </div>
+          <div class="cu">
+            <button class="cb" onclick="pc('awfera-car-4')">←</button>
+            <div class="dts">
+              <button class="dt on" onclick="gs('awfera-car-4',0)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',1)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',2)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',3)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',4)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',5)"></button>
+              <button class="dt" onclick="gs('awfera-car-4',6)"></button>
+            </div>
+            <button class="cb" onclick="nc('awfera-car-4')">→</button>
+            <span id="awfera-car-4-ct">1/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel 6 -->
+      <div class="car-wrap">
+        <div class="car" id="awfera-car-6" data-n="5">
+          <div class="tr">
+            <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/Carousel 6/480476028_122116054166698026_7726437247216446704_n.jpg" alt="Slide 1"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 6/480531857_122116054172698026_8111730486660328774_n.jpg" alt="Slide 2"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 6/480816441_122116054184698026_255158435913416303_n.jpg" alt="Slide 3"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 6/480840612_122116054100698026_2268409257086003828_n.jpg" alt="Slide 4"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carousel 6/480922825_122116054178698026_5653732965080204868_n.jpg" alt="Slide 5"></div>
+          </div>
+          <div class="cu">
+            <button class="cb" onclick="pc('awfera-car-6')">←</button>
+            <div class="dts">
+              <button class="dt on" onclick="gs('awfera-car-6',0)"></button>
+              <button class="dt" onclick="gs('awfera-car-6',1)"></button>
+              <button class="dt" onclick="gs('awfera-car-6',2)"></button>
+              <button class="dt" onclick="gs('awfera-car-6',3)"></button>
+              <button class="dt" onclick="gs('awfera-car-6',4)"></button>
+            </div>
+            <button class="cb" onclick="nc('awfera-car-6')">→</button>
+            <span id="awfera-car-6-ct">1/5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel 7 -->
+      <div class="car-wrap">
+        <div class="car" id="awfera-car-7" data-n="6">
+          <div class="tr">
+            <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/491048513_122125615598698026_4513148805291860851_n.jpg" alt="Slide 1"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/491288623_122125615604698026_2543977023356850099_n.jpg" alt="Slide 2"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/491360106_122125615592698026_7442028251984460987_n.jpg" alt="Slide 3"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/492736643_122125615610698026_2359896699804005193_n.jpg" alt="Slide 4"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/493082500_122125615496698026_2952438531865150835_n.jpg" alt="Slide 5"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/carousel 7/493314424_122125615616698026_4385801279741357451_n.jpg" alt="Slide 6"></div>
+          </div>
+          <div class="cu">
+            <button class="cb" onclick="pc('awfera-car-7')">←</button>
+            <div class="dts">
+              <button class="dt on" onclick="gs('awfera-car-7',0)"></button>
+              <button class="dt" onclick="gs('awfera-car-7',1)"></button>
+              <button class="dt" onclick="gs('awfera-car-7',2)"></button>
+              <button class="dt" onclick="gs('awfera-car-7',3)"></button>
+              <button class="dt" onclick="gs('awfera-car-7',4)"></button>
+              <button class="dt" onclick="gs('awfera-car-7',5)"></button>
+            </div>
+            <button class="cb" onclick="nc('awfera-car-7')">→</button>
+            <span id="awfera-car-7-ct">1/6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel 8 -->
+      <div class="car-wrap">
+        <div class="car" id="awfera-car-8" data-n="6">
+          <div class="tr">
+            <div class="sl act"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/493687934_122132401874698026_762549915155985374_n.jpg" alt="Slide 1"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/493948879_122132402012698026_4913537154868166968_n.jpg" alt="Slide 2"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/498206845_122132402006698026_7605057052976205187_n.jpg" alt="Slide 3"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/499452806_122132401742698026_3023025628031005535_n.jpg" alt="Slide 4"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/502536375_122132401970698026_5252797418371268607_n.jpg" alt="Slide 5"></div>
+            <div class="sl"><img src="assets/Portfolio/Awfera/Carousel/Carusel 8/506449595_122132401736698026_8781235867444135887_n.jpg" alt="Slide 6"></div>
+          </div>
+          <div class="cu">
+            <button class="cb" onclick="pc('awfera-car-8')">←</button>
+            <div class="dts">
+              <button class="dt on" onclick="gs('awfera-car-8',0)"></button>
+              <button class="dt" onclick="gs('awfera-car-8',1)"></button>
+              <button class="dt" onclick="gs('awfera-car-8',2)"></button>
+              <button class="dt" onclick="gs('awfera-car-8',3)"></button>
+              <button class="dt" onclick="gs('awfera-car-8',4)"></button>
+              <button class="dt" onclick="gs('awfera-car-8',5)"></button>
+            </div>
+            <button class="cb" onclick="nc('awfera-car-8')">→</button>
+            <span id="awfera-car-8-ct">1/6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Awfera Infographics -->
+    <div class="car-lbl" style="margin-top:40px">Infographics</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/Awfera/Infographics/infography awferav300.jpg" alt="Info 1"><div class="rc-ov"><div class="rc-t">Educational Guide</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/Infographics/info.jpg" alt="Info 2"><div class="rc-ov"><div class="rc-t">Process Map</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/Infographics/info 3.jpg" alt="Info 3"><div class="rc-ov"><div class="rc-t">Marketing Data</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/Awfera/Infographics/info 5.jpg" alt="Info 4"><div class="rc-ov"><div class="rc-t">Social Insight</div></div></div>
+    </div>
+   </div>
+
+  <!-- COVIS PROJECT -->
+  <div class="brand-sec sr">
+    <div class="brand-hd">
+      <div class="brand-ico" style="background:rgba(8,145,178,0.1)">⚡</div>
+      <div>
+        <div class="brand-nm">Covis AI</div>
+        <div class="brand-ds">AI-driven project management SaaS — branding and visuals.</div>
+      </div>
+      <span class="brand-badge" style="color:#0891B2;border-color:rgba(8,145,178,0.2)">SaaS · Productivity</span>
+    </div>
+
+    <!-- Covis Posts -->
+    <div class="car-lbl">Social Media Posts</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/covis/post/covis.ai 1-01.jpg" alt="Covis Post 1"><div class="rc-ov"><div class="rc-t">Interface Showcase</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/covis/post/covis.ai 2-01.jpg" alt="Covis Post 2"><div class="rc-ov"><div class="rc-t">Feature Highlight</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/covis/post/covis.ai post---01.jpg" alt="Covis Post 3"><div class="rc-ov"><div class="rc-t">SaaS Branding</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/covis/post/covis.ai post-06.jpg" alt="Covis Post 4"><div class="rc-ov"><div class="rc-t">User Experience</div></div></div>
+    </div>
+
+    <!-- Covis Carousel -->
+    <div class="car-wrap">
+      <div class="car-lbl">Product Carousel</div>
+      <div class="car" id="covis-car" data-n="5">
+        <div class="tr">
+          <div class="sl act"><img src="assets/Portfolio/covis/carousel/Carousel 1/covis.ai carousel0-01.jpg" alt="Slide 1"><div class="sl-lb">AI Project Management</div></div>
+          <div class="sl"><img src="assets/Portfolio/covis/carousel/Carousel 1/covis.ai carousel0-02.jpg" alt="Slide 2"><div class="sl-lb">Smart Scheduling</div></div>
+          <div class="sl"><img src="assets/Portfolio/covis/carousel/Carousel 1/covis.ai carousel0-03.jpg" alt="Slide 3"><div class="sl-lb">Real-time Insights</div></div>
+          <div class="sl"><img src="assets/Portfolio/covis/carousel/Carousel 1/covis.ai carousel0-04.jpg" alt="Slide 4"><div class="sl-lb">Automated Workflows</div></div>
+          <div class="sl"><img src="assets/Portfolio/covis/carousel/Carousel 1/covis.ai carousel0-05.jpg" alt="Slide 5"><div class="sl-lb">Team Collaboration</div></div>
+        </div>
+        <div class="cu">
+          <button class="cb" onclick="pc('covis-car')">←</button>
+          <div class="dts">
+            <button class="dt on" onclick="gs('covis-car',0)"></button>
+            <button class="dt" onclick="gs('covis-car',1)"></button>
+            <button class="dt" onclick="gs('covis-car',2)"></button>
+            <button class="dt" onclick="gs('covis-car',3)"></button>
+            <button class="dt" onclick="gs('covis-car',4)"></button>
+          </div>
+          <button class="cb" onclick="nc('covis-car')">→</button>
+          <span id="covis-car-ct">1/5</span>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  <!-- HEALTHCARE PROJECT -->
+  <div class="brand-sec sr">
+    <div class="brand-hd">
+      <div class="brand-ico" style="background:rgba(34,197,94,0.1)">🏥</div>
+      <div>
+        <div class="brand-nm">Healthcare & Medical Visuals</div>
+        <div class="brand-ds">Professional social media graphics for medical platforms.</div>
+      </div>
+      <span class="brand-badge" style="color:#22C55E;border-color:rgba(34,197,94,0.2)">Healthcare</span>
+    </div>
+    <div class="car-lbl">Social Media Posts</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/healthcare/Post-03.jpg" alt="Healthcare 1"><div class="rc-ov"><div class="rc-t">Service Promo</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/healthcare/did you know post-01 (1).jpg" alt="Healthcare 2"><div class="rc-ov"><div class="rc-t">Educational Tip</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/healthcare/post1-01.jpg" alt="Healthcare 3"><div class="rc-ov"><div class="rc-t">Patient Care</div></div></div>
+    </div>
+  </div>
+
+  <!-- OTHER CLIENTS -->
+  <div class="brand-sec sr">
+    <div class="brand-hd">
+      <div class="brand-ico" style="background:rgba(217,119,6,0.1)">💼</div>
+      <div>
+        <div class="brand-nm">Other Clients</div>
+        <div class="brand-ds">Branding and marketing assets for various industries.</div>
+      </div>
+      <span class="brand-badge" style="color:var(--terra);border-color:rgba(217,119,6,0.2)">Multi-Industry</span>
+    </div>
+    <div class="car-lbl">Social Media Posts</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/other clients/Brandmark Minimalist Logo for PUTON.jpg" alt="Other 1"><div class="rc-ov"><div class="rc-t">PUTON Branding</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/other clients/Contetent center4.jpg" alt="Other 2"><div class="rc-ov"><div class="rc-t">Content Design</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/other clients/Poster -.jpg" alt="Other 3"><div class="rc-ov"><div class="rc-t">Event Poster</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/other clients/Xeven  graphic-01.jpg" alt="Other 4"><div class="rc-ov"><div class="rc-t">Xeven Graphic</div></div></div>
+    </div>
+  </div>
+
+  <!-- MY FLORIDA GREEN -->
+  <div class="brand-sec sr">
+    <div class="brand-hd">
+      <div class="brand-ico" style="background:rgba(34,197,94,0.1)">🌿</div>
+      <div>
+        <div class="brand-nm">My Florida Green</div>
+        <div class="brand-ds">Medical marijuana platform graphics · USA.</div>
+      </div>
+      <span class="brand-badge" style="color:#22C55E;border-color:rgba(34,197,94,0.2)">Healthcare</span>
+    </div>
+    <div class="car-lbl">Social Media Posts</div>
+    <div class="rg">
+      <div class="rc"><img src="assets/Portfolio/My florida green/My florida Green-02.jpg" alt="MFG 1"><div class="rc-ov"><div class="rc-t">Service Promo</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/My florida green/My florida Green-04.jpg" alt="MFG 2"><div class="rc-ov"><div class="rc-t">Educational Content</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/My florida green/My florida Green-05.jpg" alt="MFG 3"><div class="rc-ov"><div class="rc-t">Community Impact</div></div></div>
+      <div class="rc"><img src="assets/Portfolio/My florida green/florida.jpg" alt="MFG 4"><div class="rc-ov"><div class="rc-t">Brand Visual</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="proc-bg">
+  <div class="section">
+    <div class="sl-label sr">How I Work</div>
+    <h2 class="sec-h sr">My Design Process —<br/><em style="color:var(--gold)">Clear & Collaborative</em></h2>
+    <p class="sec-p sr">No surprises, no delays. Here's exactly what to expect.</p>
+    <div class="steps">
+      <div class="step sr">
+        <div class="step-num">01</div>
+        <div class="step-t">Discovery</div>
+        <div class="step-d">Short brief about your goals, audience, and vision. I ask the right questions first.</div>
+      </div>
+      <div class="step sr" style="transition-delay:.1s">
+        <div class="step-num">02</div>
+        <div class="step-t">Strategy</div>
+        <div class="step-d">Research your industry and competitors to ensure the design is not just beautiful but effective.</div>
+      </div>
+      <div class="step sr" style="transition-delay:.2s">
+        <div class="step-num">03</div>
+        <div class="step-t">Design & Revisions</div>
+        <div class="step-d">Initial concepts with clear rationale. Your feedback shapes revisions until you love it.</div>
+      </div>
+      <div class="step sr" style="transition-delay:.3s">
+        <div class="step-num">04</div>
+        <div class="step-t">Delivery</div>
+        <div class="step-d">Clean files in all formats — print-ready, web-optimized, and editable. Always on time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section">
+    <div class="sl-label sr">Client Reviews</div>
+    <h2 class="sec-h sr">What clients <em>say about</em> my work</h2>
+    <p class="sec-p sr">Real feedback from real clients. Delivering quality, consistency, and creativity on every project.</p>
+    <div class="rev-grid">
+      <div class="rev-card sr">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#7C3AED,#A78BFA)">A</div>
+          <div><div class="rev-name">Awfera Innovations</div><div class="rev-role">AI Education Platform</div></div>
+          <span class="rev-tag" style="color:var(--terra);border-color:rgba(139,92,246,0.2)">AI·EdTech</span>
+        </div>
+        <p class="rev-text">"Outstanding work! Sania delivered all 60+ posts on time with incredible consistency in our brand style. Our engagement rate improved significantly."</p>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+      <div class="rev-card sr" style="transition-delay:.1s">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#0891B2,#22D3EE)">C</div>
+          <div><div class="rev-name">Covis AI</div><div class="rev-role">Project Management SaaS</div></div>
+          <span class="rev-tag" style="color:var(--terra);border-color:rgba(139,92,246,0.2)">AI·SaaS</span>
+        </div>
+        <p class="rev-text">"Professional, creative, and responsive. Sania understood our brand vision immediately and created stunning carousel and post designs."</p>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+      <div class="rev-card sr" style="transition-delay:.2s">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#16A34A,#22C55E)">M</div>
+          <div><div class="rev-name">My Florida Green</div><div class="rev-role">Medical Marijuana Platform</div></div>
+          <span class="rev-tag" style="color:var(--terra);border-color:rgba(139,92,246,0.2)">Healthcare</span>
+        </div>
+        <p class="rev-text">"We needed someone who could handle medical branding with professionalism. Sania delivered clean, compliant, and visually appealing graphics."</p>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="divider"></div>
+<section id="contact" class="cta-section">
+  <h2>Ready to Make Your<br/>Brand Unforgettable?</h2>
+  <p>Let's collaborate to create visuals that truly represent your brand. I'm currently available for new projects.</p>
+  <div class="cta-btns">
+    <a href="https://www.upwork.com/freelancers/~0123456789abcdef" target="_blank" class="cta-btn">✉ Hire Me on Upwork</a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed by <strong>Sania</strong> · Graphic Designer · Pakistan · 2025</p>
+</footer>
+
+<!-- IMAGE PREVIEW MODAL -->
+<div id="img-modal" class="modal" onclick="this.style.display='none'">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-img">
+</div>
+
+<script>
+// ── CAROUSEL ──
+const S={};
+function gs(id,i){S[id]=i;render(id);}
+function nc(id){const n=+document.getElementById(id).dataset.n;S[id]=((S[id]||0)+1)%n;render(id);}
+function pc(id){const n=+document.getElementById(id).dataset.n;S[id]=((S[id]||0)-1+n)%n;render(id);}
+function render(id){
+  const box=document.getElementById(id);if(!box)return;
+  const n=+box.dataset.n,i=S[id]||0;
+  box.querySelectorAll('.sl').forEach((s,j)=>s.classList.toggle('act',j===i));
+  box.querySelectorAll('.dt').forEach((d,j)=>d.classList.toggle('on',j===i));
+  const ct=document.getElementById(id+'-ct');if(ct)ct.textContent=(i+1)+'/'+n;
+}
+
+// ── SCROLL REVEAL ──
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');} );
+  },{threshold:0.1});
+  document.querySelectorAll('.sr').forEach((el,i)=>{
+    if(!el.classList.contains('vis'))obs.observe(el);
+    else el.classList.add('vis');
+  });
+}
+initReveal();
+
+// ── NAV SHRINK ON SCROLL ──
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  if(nav)nav.style.padding=window.scrollY>40?'14px 60px':'22px 60px';
+});
+
+// ── IMAGE PREVIEW ──
+function openPreview(src){
+  const m=document.getElementById('img-modal');
+  const img=document.getElementById('modal-img');
+  if(m && img){
+    img.src=src;
+    m.style.display='block';
+  }
+}
+
+document.addEventListener('click', e => {
+  const rc = e.target.closest('.rc');
+  const sl = e.target.closest('.sl');
+  if(rc){
+    const img = rc.querySelector('img');
+    if(img) openPreview(img.src);
+  } else if(sl && e.target.tagName === 'IMG'){
+    openPreview(e.target.src);
+  }
+});
+</script>
+</body>
+</html>
